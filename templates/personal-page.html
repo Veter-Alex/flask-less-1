@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru"></html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Персонализированная страница</title>
+        <link rel="stylesheet" href="/static/css/style.css" />
+    </head>
+    <body>
+        <h1>Привет, {{ name }}</h1>
+
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/about">О нас</a></li>
+                <li><a href="/contact">Контакты</a></li>
+                <li><a href="/task">Задачи</a></li>
+                {% if name == "John" %}
+                    <li><a href="/user/John">Профиль John</a></li>
+                    <li><a href="/settings">Настройка пользователя</a></li>
+                {% endif %}
+                {% if name == "Guest" %}
+                    <li><a href="/signin">Регистрация</a></li>
+                    <li><a href="/login">Вход</a></li>
+                {% endif %}
+                <li><a href="/logout">Выход</a></li>
+            </ul>
+        </nav>
+    </body>
