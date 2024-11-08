@@ -1,47 +1,44 @@
 from datetime import datetime
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def index():
-    message = "Тестовая страница"
-    return render_template("index.html", message=message)
-
-
-# http://127.0.0.1:5000/user/John
-# страница с динамическим параметром
-# можно использовать для персонализации страниц
-@app.route("/user/<name>")
-def user(name):
-    return f"User: {name}"
-
-
-@app.route("/personal-page")
-def personal_page():
-    name = "John"
-    return render_template("personal-page.html", name=name)
-
-
-@app.route("/task")
-def task():
+    # получает name из url
+    name = request.args.get("name")
+    # если name == None или name == "null" то name = "Guest"
+    if name is None or name == "null":
+        name = "Guest"
+    # текущее время
     curent_time = datetime.now()
+    # доброе утро, добрый день, добрый вечер
     if curent_time.hour < 12:
         greeting = "Доброе утро"
+
     elif 12 <= curent_time.hour < 18:
         greeting = "Добрый день"
     else:
         greeting = "Добрый вечер"
 
-    tasks = {
-        "Задача 1",
-        "Задача 2",
-        "Задача 3",
-    }
+    # задачи
+    match greeting:
+        case "Доброе утро":
+            tasks = ["Подъем 7:00", "Зарядка 7:30-8:00", "Завтрак 8:30"]
+        case "Добрый день":
+            tasks = ["Обед 13:00", "Дневной сон 14:00-16:00", "Обучение 16:00-18:00"]
+        case "Добрый вечер":
+            tasks = ["Тренировка 19:00-20:00", "Ужин 20:30", "Чтение книги 21:00"]
+
+    # возвращаем шаблон
     return render_template(
-        "task.html", curent_time=curent_time, greeting=greeting, task=tasks
+        "index.html",
+        name=name,
+        curent_time=curent_time.strftime("%H:%M:%S"),
+        greeting=greeting,
+        task=tasks,
     )
 
 

@@ -8,23 +8,71 @@
         <link rel="stylesheet" href="/static/css/style.css" />
     </head>
     <body>
-        <h1>{{ message }}</h1>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-        <div>
-            <p>Перейти на персонализированную страницу</p>
-            <input type="text" id="user-input"/>
+        <div id="header">
+            <h1>Главная страница</h1>
+            <!-- Панель навигации в зависимости от имени пользователя -->
+            <nav>
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/about">О нас</a></li>
+                    <li><a href="/contact">Контакты</a></li>
+                    {% if name != "Guest" %}
+                    <!-- если пользователь авторизован -->
+                    <li><a href="/user/{{name}}">Профиль {{ name }}</a></li>
+                    <li><a href="/task">Задачи {{ name }}</a></li>
+                    <li><a href="/setting">Настройка пользователя</a></li>
+                    <li><a href="/?name=null">Выход</a></li>
+                    {% else %}
+                    <!-- если пользователь не авторизован -->
+                    <li><a href="/signin">Регистрация</a></li>
+                    <div>
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Введите имя пользователя"
+                        />
+                        <button onclick="enter_with_username()">Вход</button>
+                    </div>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Приветствие в зависимости от времени суток и имени -->
+        <p id="greeting">{{ greeting }}, {{ name }}</p>
+        <p id="curent-time">{{ curent_time }}</p>
+
+        <!-- Вывод списка задач -->
+        <div id="tasks-container">
+            <p id="tasks-title">Ваш список задач на текущее время суток:</p>
+            <ul id="tasks-list">
+                {% for task in task %}
+                <li>{{ task }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Переход на другой ресурс -->
+        <div id="other-page-container">
+            <p>Перейти на сторонний ресурс</p>
+            <input type="text" id="other-page" />
             <button onclick="redirectToUserPage()">Переход</button>
         </div>
-    <script src="/static/js/scipt.js"></script>
 
-    <div>
-        <div id="tree-folder">
+        <!-- Получение дерева папок -->
+        <div id="tree-folder-container">
+            <p>Получение дерева папок</p>
+            <div id="tree-folder-list" type="text">
+            </div>
+
+            <input
+                type="text"
+                id="folder-path"
+                placeholder="Введите путь к головной директории ..."
+            />
+            <button onclick="getFolderTree()">Получить дерево папок</button>
         </div>
-        <div id="tree-folder-list" type="text" style="margin: 20px; height: 300px; width: 300px; background: white; border: 1px solid;">
-        </div>
-        <input type="text" id="folder-path" placeholder="Введите путь к папке"/>
-        <button onclick="getFolderTree()">Получить дерево папок</button>
-    </div>  
+
+        <script src="/static/js/scipt.js"></script>
     </body>
 </html>

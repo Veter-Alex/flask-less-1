@@ -1,4 +1,98 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #808080;
+}
+
+#header {
+    background-color: #5e5d5d;
+    margin: 10px;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+nav {
+    background-color: #5e5d5d;
+    display: flex;
+    justify-content: center;
+    font-weight: bold; 
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav li {
+    margin-right: 4em;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav a:active {
+    color: #0000ff;
+}
+
+#greeting, #curent-time {
+    text-align: right;
+    margin-right: 5%;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#tasks-container {
+    margin: 0 5em;
+    padding: 10px;
+    line-height: 2em;
+}
+
+#tasks-title {
+    font-weight: bold;
+    font-size: large;
+}
+
+#tasks-list {
+    list-style: none;
+}
+
+#other-page-container {
+    margin: 1em 5em;
+}
+
+#other-page {
+    width: 50%;
+    height: 1.3em;
+}
+
+#tree-folder-container {
+    margin: 3em 5em;
+}
+
+#tree-folder-list {
+    height: 300px;
+    width: 50%;
+    border: 1px solid black;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
+#folder-path {
+    width: 40%;
 }

@@ -1,8 +1,12 @@
 function redirectToUserPage() {
-    const userInput = document.getElementById("user-input").value;
-    window.location.href = `/user/${userInput}`;
+    const userInput = document.getElementById("other-page").value;
+    window.location.href = userInput;
 }
 
+function enter_with_username() {
+    const username = document.getElementById("username").value;
+    window.location.href = `/?name=${username}`;
+}
 function getFolderTree() {
     const folderList = [];
     const rootDir = document.getElementById("folder-path").value;
