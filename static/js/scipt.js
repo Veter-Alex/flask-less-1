@@ -20,8 +20,15 @@ function getFolderTree() {
     //         folderList.push(dirPath);
     //     }
     // });
-    
+
     document.body.style.backgroundColor = "green"; // тест - меняем цвет фона на зеленый
     document.getElementById("tree-folder-list").innerHTML = dirs;
     // document.getElementById("tree-folder-list").innerHTML = folderList.join("<br>");
 }
+
+function updateTime() {
+    const currentTime = new Date().toLocaleTimeString();
+    document.getElementById("curent-time").textContent = currentTime;
+}
+
+setInterval(updateTime, 1000);

@@ -74,23 +74,26 @@ nav a:active {
 
 #other-page-container {
     margin: 1em 5em;
+    width: 50%;
 }
 
 #other-page {
-    width: 50%;
+    width: 100%;
     height: 1.3em;
 }
 
 #tree-folder-container {
     margin: 3em 5em;
+    width: 50%;
 }
 
 #tree-folder-list {
     height: 300px;
-    width: 50%;
+    width: 100%;
     border: 1px solid black;
     overflow-y: scroll;
     margin-bottom: 10px;
+    background-color: rgb(187, 187, 187);
 }
 
 #folder-path {
